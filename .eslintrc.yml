@@ -1,0 +1,51 @@
+extends: ['eslint:recommended', 'plugin:react/recommended', "plugin:jest/recommended"]
+env:
+  es6: true
+  browser: true
+  serviceworker: true
+  jest: true
+
+globals:
+  __dirname: true
+  BACKEND_URL: true
+  FRONTEND_URL: true
+  STATIC_URL: true
+  ROLES: true
+  TRACKING_URL: true
+  STAGING_SITE: true
+  SIGS_URL: true
+  SITE_ID: true
+  MISP_URL: true
+  process: true
+  mount: true
+  extendExpect: true
+
+parser: "babel-eslint"
+parserOptions:
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+    jsx: true
+  sourceType: module
+
+plugins:
+  - react
+  - jest
+
+rules:
+  indent:
+    - error
+    - 4
+    - SwitchCase: 1
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - double
+  semi:
+    - error
+    - always
+  no-console: 0
+  no-useless-escape: 0
+  react/display-name: 0
+  react/react-in-jsx-scope: 0

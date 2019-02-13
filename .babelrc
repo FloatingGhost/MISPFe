@@ -1,0 +1,4 @@
+{
+  "presets" : ["env", "react", "stage-1", "es2015", "stage-0"],
+  "plugins" : ["transform-class-properties", "syntax-dynamic-import", "transform-async-to-generator"]
+}
