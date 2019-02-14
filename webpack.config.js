@@ -18,6 +18,7 @@ const vars = new webpack.DefinePlugin({
 });
 
 
+
 const moment = new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/);
 
 const extract_text = new MiniCssExtractPlugin({
@@ -52,7 +53,7 @@ const clean = new CleanWebpackPlugin("dist", {});
 const common = {
 
     entry: {
-        main: ["babel-polyfill", path.resolve(APP_DIR + "/index.js")],
+        main: ["@babel/polyfill", path.resolve(APP_DIR + "/index.js")],
     },
 
     optimization: {
@@ -126,7 +127,7 @@ switch(process.env.NODE_ENV) {
             { mode: "production" },
             { devtool: "source-map" },
             { plugins: [ vars, extract_text, manifest, sw, moment, html, copy, clean  ]
-            }
+            },
         );
         break;
 
@@ -135,7 +136,11 @@ switch(process.env.NODE_ENV) {
             common,
             { mode: "development" },
             { devtool: "cheap-module-source-map" },
-            { plugins: [ vars, extract_text, manifest, sw, moment, html, copy, clean, new HardSourceWebpackPlugin()  ] }
+            { plugins: [ vars, extract_text, manifest, sw, moment, html, copy, clean, new HardSourceWebpackPlugin(), new webpack.HotModuleReplacementPlugin()] },
+            { devServer: {
+                port: 8083,
+                hot: true
+            }}
         );
         break;
 }

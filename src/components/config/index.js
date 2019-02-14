@@ -44,7 +44,7 @@ class Config extends React.Component {
                             name="apikey"
                             value={this.state.apikey}
                             label="API Key"
-                            placeholder="MyAPIKEY"
+                            placeholder="MYAPIKEY"
                             onChange={this.onChange}
                         />
 

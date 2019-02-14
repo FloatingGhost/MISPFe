@@ -1,9 +1,32 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { TEST_CONNECTION } from "actions/config";
 
-export default class Home extends React.Component {
+class Home extends React.PureComponent {
+    static propTypes = {
+        loggedIn: PropTypes.bool
+    }
+
     render() {
+        const { loggedIn } = this.props;
+
+        console.log("RENDERING AS", this.props);
+
+        if (!loggedIn) {
+            return (
+                <h1>Not logged in, please set your credentials via the "Change instance" button in the top right</h1>
+            );
+        }
+
         return (
-            <h1>test</h1>
+            <h1>Hooray</h1>
         );
     }
 }
+
+const mapStateToProps = ({ config }) => ({
+    loggedIn: config.loggedIn
+});
+
+export default connect(mapStateToProps)(Home);

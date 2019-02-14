@@ -9,9 +9,11 @@ export const getHeaders = (otherHeaders = {}) => {
     const state = store.getState();
 
     return {headers: Object.assign({},
-                                   {"Authorization": state.config.apikey,
-                                    "Content-Type": "application/json",
-                                    "Accept": "application/json"},
+                                   {
+                                    "Authorization": state.config.apikey,
+                                    "Accept": "application/json",
+                                    "Content-Type": "application/json"
+                                   },
                                    otherHeaders)
             };
 }

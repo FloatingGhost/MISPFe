@@ -1,4 +1,3 @@
-import thunkMiddleware from "redux-thunk";
 import mispReducers from "reducers";
 import { createStore, applyMiddleware } from "redux"
 import { persistStore } from "redux-persist";
@@ -7,7 +6,6 @@ import { routerMiddleware } from 'connected-react-router';
 import createBrowserHistory from "history/createBrowserHistory";
 import createSagaMiddleware from "redux-saga";
 
-import { requestLoginTest } from "actions/config";
 
 export let history = createBrowserHistory();
 const loggerMiddleware = createLogger();
@@ -15,7 +13,6 @@ const sagaMiddleware = createSagaMiddleware();
 
 let middlewares = [
         routerMiddleware(history),
-        thunkMiddleware,
         sagaMiddleware
 ];
 
@@ -28,8 +25,12 @@ export let store = createStore(
     applyMiddleware(...middlewares)
 );
 
-const runningSagas = [requestLoginTest];
-runningSagas.forEach(saga => sagaMiddleware.run(saga));
+import { requestLoginTest } from "actions/config";
+
+setTimeout(() => {
+    const runningSagas = [requestLoginTest];
+    runningSagas.forEach(saga => sagaMiddleware.run(saga));
+}, 1000);
 
 export let persistor = persistStore(store);
 
