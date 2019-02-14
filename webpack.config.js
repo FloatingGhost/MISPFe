@@ -139,7 +139,8 @@ switch(process.env.NODE_ENV) {
             { plugins: [ vars, extract_text, manifest, sw, moment, html, copy, clean, new HardSourceWebpackPlugin(), new webpack.HotModuleReplacementPlugin()] },
             { devServer: {
                 port: 8083,
-                hot: true
+                hot: true,
+                historyApiFallback: true
             }}
         );
         break;
