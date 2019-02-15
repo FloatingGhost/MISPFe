@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { SEARCH_EVENTS } from "actions/events";
-import { Header, Segment } from "semantic-ui-react";
+import { Header, Segment, Statistic, Label } from "semantic-ui-react";
+import { LocalAttributeList } from "attributes/list";
 
 class ViewEvent extends React.Component {
     componentDidMount() {
@@ -17,6 +18,18 @@ class ViewEvent extends React.Component {
         return (
             <Segment inverted>
                 <Header as="h1">Event {event.id}: {event.info}</Header>
+
+                <Label color={event.published?"green":"red"}
+                    content={event.published?"Published":"Unpublished"}
+                />
+
+                <Statistic.Group inverted size="small">
+                    <Statistic label="Attributes" value={event.attribute_count} />
+                    <Statistic label="Analysis" value={event.analysis} />
+                    <Statistic label="Threat Level" value={event.threat_level_id} />
+                </Statistic.Group>
+
+                <LocalAttributeList attributes={event.Attribute} />
             </Segment>
         );
     }

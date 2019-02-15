@@ -3,15 +3,21 @@ import ReactTable from "react-table";
 import { post } from "utils";
 import { connect } from "react-redux";
 import { SEARCH_EVENTS } from "actions/events";
+import { NavLink } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 
-const EventList = ({ loading, events, pages, getEvents }) => {
+const EventList = ({ loading, events, pages, searchParams, getEvents }) => {
     const columns = [
-        { Header: "ID", accessor: "Event.id" },
-        { Header: "Date", accessor: "Event.date" },
+        { Header: "ID", accessor: "Event.id", minWidth: 10 },
+        { Header: "Date", accessor: "Event.date", minWidth: 15 },
         { Header: "Info", accessor: "Event.info" },
+        { Header: "To Event", accessor: "Event.id", Cell: d => <NavLink to={`/events/${d.value}`}><Button color="black" icon="arrow right" /></NavLink>, minWidth: 10}
     ];
 
-    const search = ({ page, pageSize }) => getEvents({ page: page + 1, limit: pageSize });
+    const search = ({ page, pageSize }) => {
+        let searchParams = Object.assign({}, searchParams, { page: page + 1, limit: pageSize });
+        getEvents(searchParams);
+    }
 
     return (
         <ReactTable
@@ -29,7 +35,8 @@ const EventList = ({ loading, events, pages, getEvents }) => {
 const mapStateToProps = ({ events }) => ({
     events: events.events,
     loading: events.loading,
-    pages: events.pages
+    pages: events.pages,
+    searchParams: events.searchParams,
 });
 
 const mapDispatchToProps = dispatch => ({
