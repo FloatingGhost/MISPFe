@@ -9,7 +9,8 @@ const load_options = { LoadingComponent: () => <Placeholder /> };
 
 const routes = [
     { path: "/", component: () => import("home/index") },
-    { path: "/events", component: () => import("events/list") }
+    { path: "/events", component: () => import("events/list") },
+    { path: "/events/:id", component: () => import("events/view") }
 ];
 
 const process_components = (components, base_route="") => {

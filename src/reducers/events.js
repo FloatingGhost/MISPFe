@@ -2,7 +2,7 @@ import { SEARCH_EVENTS, RECV_EVENT_SEARCH } from "actions/events";
 
 const initial_state = {
     events: [],
-    loading: false,
+    loading: true,
     pages: -1,
 };
 
