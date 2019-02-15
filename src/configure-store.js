@@ -26,11 +26,11 @@ export let store = createStore(
 );
 
 import { requestLoginTest } from "actions/config";
+import { watchEventSearch } from "actions/events";
+import { watchAttributeSearch } from "actions/attributes";
 
-setTimeout(() => {
-    const runningSagas = [requestLoginTest];
-    runningSagas.forEach(saga => sagaMiddleware.run(saga));
-}, 1000);
+const runningSagas = [requestLoginTest, watchEventSearch, watchAttributeSearch];
+runningSagas.forEach(saga => sagaMiddleware.run(saga));
 
 export let persistor = persistStore(store);
 

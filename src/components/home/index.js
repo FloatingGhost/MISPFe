@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { TEST_CONNECTION } from "actions/config";
+import AttributeSearch from "search/attributes";
+import AttributeList from "attributes/list";
 
 class Home extends React.PureComponent {
     static propTypes = {
@@ -11,16 +13,17 @@ class Home extends React.PureComponent {
     render() {
         const { loggedIn } = this.props;
 
-        console.log("RENDERING AS", this.props);
-
         if (!loggedIn) {
             return (
                 <h1>Not logged in, please set your credentials via the "Change instance" button in the top right</h1>
             );
         }
 
-        return (
-            <h1>Hooray</h1>
+        return (    
+            <div>
+                <AttributeSearch />
+                <AttributeList />
+            </div>
         );
     }
 }

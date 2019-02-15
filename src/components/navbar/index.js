@@ -6,7 +6,7 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import ConfigChanger from "config/index";
 
-export default class NavBar extends React.Component {
+class NavBar extends React.Component {
     render() {
 
         const centralNav = [
@@ -37,3 +37,5 @@ export default class NavBar extends React.Component {
         );
     }
 }
+
+export default withRouter(NavBar);

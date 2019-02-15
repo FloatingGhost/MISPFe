@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { ConnectedRouter } from 'connected-react-router';
 import { ToastContainer } from "react-toastify";
+import { Container, Segment } from "semantic-ui-react";
 
 import routemap from "routemap";
 import NavBar from "navbar/index";
@@ -21,7 +22,7 @@ const App = ({ store, persistor, history}) => (
                                     key={index}
                                     path={route.path}
                                     exact
-                                    render={(props) => <route.component {...props} />}
+                                    render={(props) => <Container><Segment inverted><route.component {...props} /></Segment></Container>}
                                 />
                             ))}
                         </Switch>
