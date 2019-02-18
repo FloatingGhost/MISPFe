@@ -1,23 +1,8 @@
 import React from "react";
 import { Form } from "semantic-ui-react";
 import { connect } from "react-redux";
-
-const AttributeTypeDropdown = ({ types, ...props }) => (
-    <Form.Dropdown
-        {...props}
-        search
-        fluid
-        selection
-        options={types.map(type => ({ text: type, value: type}))}
-    />        
-);
-
-const mapAttributeTypesToProps = ({ config: { attributeTypes: { types }}}) => ({
-    types
-});
-
-const ConnectedAttributeTypeDropdown = connect(mapAttributeTypesToProps)(AttributeTypeDropdown);
-
+import AttributeType from "search/attribute-types";
+import AttributeCategory from "search/attribute-categories";
 
 const ParameterInput = ({ name, type, value, onChange, ...props }) => {
     switch (type) {
@@ -31,7 +16,12 @@ const ParameterInput = ({ name, type, value, onChange, ...props }) => {
                         {...props}
                     />;
         case "attr-type":
-            return <ConnectedAttributeTypeDropdown
+            return <AttributeType
+                    value={value} label={name} name={name} onChange={onChange}
+                    {...props}
+            />;
+        case "attr-category":
+            return <AttributeCategory
                     value={value} label={name} name={name} onChange={onChange}
                     {...props}
             />;
@@ -54,7 +44,8 @@ const SearchInput = ({ parameters, value, onChange }) => {
         const initialValue = {
             "string": "",
             "boolean": true,
-            "attr-type": "text"
+            "attr-type": "text",
+            "attr-category": "Internal reference"
         }[paramType];
 
         onChange(e, Object.assign({}, propValue, {[value]: initialValue}));
@@ -91,6 +82,8 @@ const SearchInput = ({ parameters, value, onChange }) => {
             })}
             <Form.Dropdown
                 placeholder="Add more filters..."
+                fluid
+                search
                 value={null}
                 options={
                     Object.keys(parameters).filter(x => !Object.keys(value).includes(x)).map(

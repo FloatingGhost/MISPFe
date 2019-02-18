@@ -1,10 +1,10 @@
 import React from "react";
 import { Form } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { SEARCH_ATTRIBUTES } from "actions/attributes";
+import { SEARCH_EVENTS } from "actions/events";
 import SearchInput from "search/index";
 
-class AttributeSearch extends React.PureComponent {
+class EventSearch extends React.PureComponent {
     state = {
         params: {value: ""}
     }
@@ -19,22 +19,20 @@ class AttributeSearch extends React.PureComponent {
             "type": "attr-type",
             "category": "attr-category",
             "org": "string",
+            "tag": "string",
             "tags": "string",
+            "searchall": "boolean",
             "from": "string",
             "to": "string",
             "last": "string",
             "eventid": "string",
-            "withAttachments": "string",
+            "withAttachments": "boolean",
+            "metadata": "boolean",
             "uuid": "string",
+            "published": "boolean",
             "publish_timestamp": "string",
             "timestamp": "string",
-            "enforceWarninglist": "string",
-            "to_ids": "boolean",
-            "deleted": "boolean",
-            "includeEventUuid": "boolean",
-            "includeEventTags": "boolean",
-            "event_timestamp": "string",
-            "threat_level_id": "string"
+            "enforceWarninglist": "boolean"
         };
 
         return (
@@ -57,7 +55,7 @@ class AttributeSearch extends React.PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-    search: (term) => dispatch({type: SEARCH_ATTRIBUTES, data: term})
+    search: (term) => dispatch({type: SEARCH_EVENTS, data: term})
 });
 
-export default connect(null, mapDispatchToProps)(AttributeSearch);
+export default connect(null, mapDispatchToProps)(EventSearch);
