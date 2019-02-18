@@ -5,6 +5,8 @@ import { createLogger } from "redux-logger";
 import { routerMiddleware } from 'connected-react-router';
 import createBrowserHistory from "history/createBrowserHistory";
 import createSagaMiddleware from "redux-saga";
+import sagas from "sagas/index";
+import { TEST_CONNECTION } from "actions/config";
 
 
 export let history = createBrowserHistory();
@@ -25,12 +27,7 @@ export let store = createStore(
     applyMiddleware(...middlewares)
 );
 
-import { requestLoginTest } from "actions/config";
-import { watchEventSearch } from "actions/events";
-import { watchAttributeSearch } from "actions/attributes";
-
-const runningSagas = [requestLoginTest, watchEventSearch, watchAttributeSearch];
-runningSagas.forEach(saga => sagaMiddleware.run(saga));
+sagaMiddleware.run(sagas);
 
 export let persistor = persistStore(store);
 

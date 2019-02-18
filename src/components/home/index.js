@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { TEST_CONNECTION } from "actions/config";
-import AttributeSearch from "search/attributes";
+import AttributeSearch from "attributes/search";
 import AttributeList from "attributes/list";
 
 class Home extends React.PureComponent {

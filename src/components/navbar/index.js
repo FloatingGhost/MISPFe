@@ -10,7 +10,8 @@ class NavBar extends React.Component {
     render() {
 
         const centralNav = [
-            { name: "Events", link: "/events" }
+            { name: "Events", link: "/events" },
+            { name: "Attributes", link: "/attributes" }
         ];
 
         return (

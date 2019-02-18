@@ -6,9 +6,13 @@ html {
         }
     }
 
-    textarea, input, select {
+    textarea, input, select, .selection.dropdown, .dropdown .menu , div[role="option"]{
         background-color: #3a3a3a !important;
         color: white !important;
+    }
+
+    div[role="option"] {
+        border-top: 1px solid #525050 !important;
     }
 
     .ReactTable .-pagination .-btn {
